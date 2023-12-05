@@ -11,9 +11,15 @@ Prototype 2 TODO:
 - remove unneeded code
     - page displays (changed approach to the design)
 - implement ability to click on drop down menu options and access sub reddits
+    - change subreddit names on drop down
 Future prototypes (3 to N)
 - expand subreddit list
 - make more visually appealing: think pictures 
+- have user go through our deliverable
+    - 1 pass to get a feel for the opp
+    - 2nd pass with a checklist we create to review the application
+        - create the checklist for the user (basically a list to ensure all functions of the GUI work as expected)
+- Continue to focus on our E
 '''
 class MyApp:
     def __init__(self, root):
