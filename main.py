@@ -60,17 +60,23 @@ class MyApp:
 
         request_text = tk.Entry(request_window)
         request_text.pack(pady=10)
-
+    
         def submit_request():
             text = request_text.get()
-            print(text)
-            request_result.config(text)
+            print("request submitted: " + text)
+            request_window.destroy()
+            thankyou_window = tk.Toplevel(self.root)
+            thankyou_window.title("Thank You")
+            thankyou_label = tk.Label(thankyou_window, text="Your request has been submitted. Thank you!")
+            thankyou_label.pack(pady=10)
+            def thankyou_close():
+                thankyou_window.destroy()
+            close_button = tk.Button(thankyou_window, text="Close", command=thankyou_close)
+            close_button.pack(pady=10)
         
-        request_button = tk.Button(request_window, text="submit", command=submit_request)
+        request_button = tk.Button(request_window, text="Submit", command=submit_request)
         request_button.pack(pady=10)
 
-        request_result = tk.Label(request_window, text="")
-        request_result.pack(pady=10)
 
     #handles the button interactions 
     def testsOne(self):
