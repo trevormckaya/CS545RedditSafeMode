@@ -36,11 +36,15 @@ class MyApp:
         #list of all subreddits on our platform
         list_label = tk.Label(root, text="List of all subreddits:")
         list_label.grid(row=4,column=0,padx=20,pady=20)
-        self.subreddits = ["Subreddit 1", "Subreddit 2", "Subreddit 3", "Subreddit 4", "Subreddit 5"]
+        self.subreddits = ["r/toys", "r/cute", "r/Awwducational", "r/wholesome"]
         self.selected_subreddit = tk.StringVar()
         self.selected_subreddit.set(self.subreddits[0])
         self.listAll = tk.OptionMenu(root, self.selected_subreddit, *self.subreddits)
-        self.listAll.grid(row=4,column=2,padx=20,pady=20)
+        self.listAll.grid(row=4,column=1,padx=20,pady=20)
+        def goToSub():
+            webbrowser.open_new('https://www.reddit.com/' + self.selected_subreddit.get())
+        optionGo = tk.Button(root, text="Go", command=goToSub)
+        optionGo.grid(row=4,column=2,padx=20,pady=20)
 
         #suggestion a new subreddit action
         request_label = tk.Label(root, text="Dont see your favorite SubReddit?")
