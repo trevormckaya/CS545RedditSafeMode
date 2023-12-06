@@ -1,17 +1,6 @@
 import tkinter as tk
 import webbrowser
 '''
-Prototype 2 TODO:
-- update suggestions to actual reddit pages
-- update suggestion names to subreddit names
-- fully implement request window
-    - store requests
-    - print thank you message
-    - auto close request window upon submition
-- remove unneeded code
-    - page displays (changed approach to the design)
-- implement ability to click on drop down menu options and access sub reddits
-    - change subreddit names on drop down
 Future prototypes (3 to N)
 - expand subreddit list
 - make more visually appealing: think pictures 
@@ -35,13 +24,13 @@ class MyApp:
         suggest_label = tk.Label(root, text="Popular Subreddits:")
         suggest_label.grid(row=2,column=1,padx=20,pady=20)
 
-        self.sOne = tk.Button(root, text="Suggestion 1", command=self.testsOne)
+        self.sOne = tk.Button(root, text="r/toys", command=self.testsOne)
         self.sOne.grid(row=3,column=0,pady=20,padx=20)
 
-        self.sTwo = tk.Button(root, text="Suggestion 2", command=self.testsTwo)
+        self.sTwo = tk.Button(root, text="r/cute", command=self.testsTwo)
         self.sTwo.grid(row=3,column=1,pady=20,padx=20)
 
-        self.sThree = tk.Button(root, text="Suggestion 3", command=self.testsThree)
+        self.sThree = tk.Button(root, text="r/Awwducational", command=self.testsThree)
         self.sThree.grid(row=3,column=2,pady=20,padx=20)
 
         #list of all subreddits on our platform
@@ -86,18 +75,15 @@ class MyApp:
     #handles the button interactions 
     def testsOne(self):
         print("sOne clicked")
-        webbrowser.open_new('https://www.google.com/')
+        webbrowser.open_new('https://www.reddit.com/r/toys/')
 
     def testsTwo(self):
         print("sTwo clicked")
-        webbrowser.open_new('https://www.google.com/')
+        webbrowser.open_new('https://www.reddit.com/r/cute/')
     
     def testsThree(self):
         print("sThree clicked")
-        webbrowser.open_new('https://www.google.com/')
-
-
-
+        webbrowser.open_new('https://www.reddit.com/r/Awwducational/')
 
 if __name__ == "__main__":
     # Create the main application window
