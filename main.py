@@ -60,18 +60,6 @@ class MyApp:
         self.request = tk.Button(root, text="Request Here", command=self.request_page)
         self.request.grid(row=5,column=1,padx=20,pady=20)
 
-        #page frame setups
-        self.request_frame = tk.Frame(root) #to remove
-        self.listAll_frame = tk.Frame(root)
-
-        #ensure home page is first page:
-        self.show_home() #to remove - shouldnt need after I'm done with windows
-
-    #Homepage
-    def show_home(self):#to remove
-        #forget all page grids
-        self.request_frame.grid_forget()
-        self.listAll_frame.grid_forget()
     #request a subreddit page
     def request_page(self):
         print("request page clicked")
@@ -94,10 +82,6 @@ class MyApp:
 
         request_result = tk.Label(request_window, text="")
         request_result.pack(pady=10)
-    
-
-    def listAll_page(self):
-        print("listAll page clicked")
 
     #handles the button interactions 
     def testsOne(self):
