@@ -16,13 +16,12 @@ class MyApp:
         self.root.title("Reddit Safe Mode")
 
         #selfpage Title
-        #notes: future prototypes update font and font size
-        self_title = tk.Label(root, text="Reddit Safe Mode")
-        self_title.grid(row=1,column=1,pady=20,padx=20)
+        self.self_title = tk.Label(root, text="Reddit Safe Mode")
+        self.self_title.grid(row=1,column=1,pady=20,padx=20)
 
         # Suggested/popular safe subreddits for users to quickly access
-        suggest_label = tk.Label(root, text="Popular Subreddits:")
-        suggest_label.grid(row=2,column=1,padx=20,pady=20)
+        self.suggest_label = tk.Label(root, text="Popular Subreddits:")
+        self.suggest_label.grid(row=2,column=1,padx=20,pady=20)
 
         self.sOne = tk.Button(root, text="r/toys", command=self.testsOne)
         self.sOne.grid(row=3,column=0,pady=20,padx=20)
@@ -34,8 +33,8 @@ class MyApp:
         self.sThree.grid(row=3,column=2,pady=20,padx=20)
 
         #list of all subreddits on our platform
-        list_label = tk.Label(root, text="List of all subreddits:")
-        list_label.grid(row=4,column=0,padx=20,pady=20)
+        self.list_label = tk.Label(root, text="List of all subreddits:")
+        self.list_label.grid(row=4,column=0,padx=20,pady=20)
         self.subreddits = ["r/toys", "r/cute", "r/Awwducational", "r/wholesome"]
         self.selected_subreddit = tk.StringVar()
         self.selected_subreddit.set(self.subreddits[0])
@@ -43,15 +42,56 @@ class MyApp:
         self.listAll.grid(row=4,column=1,padx=20,pady=20)
         def goToSub():
             webbrowser.open_new('https://www.reddit.com/' + self.selected_subreddit.get())
-        optionGo = tk.Button(root, text="Go", command=goToSub)
-        optionGo.grid(row=4,column=2,padx=20,pady=20)
+        self.optionGo = tk.Button(root, text="Go", command=goToSub)
+        self.optionGo.grid(row=4,column=2,padx=20,pady=20)
 
         #suggestion a new subreddit action
-        request_label = tk.Label(root, text="Dont see your favorite SubReddit?")
-        request_label.grid(row=5,column=0,padx=20,pady=20)
+        self.request_label = tk.Label(root, text="Dont see your favorite SubReddit?")
+        self.request_label.grid(row=5,column=0,padx=20,pady=20)
 
         self.request = tk.Button(root, text="Request Here", command=self.request_page)
         self.request.grid(row=5,column=1,padx=20,pady=20)
+
+        #Accesibility Menu
+        self.access_menu = tk.Menu(root)
+        root.config(menu=self.access_menu)
+
+        #sub menu for text size
+        text_size_menu = tk.Menu(self.access_menu, tearoff=0)
+        self.access_menu.add_cascade(label="Text Size", menu=text_size_menu)
+        text_size_menu.add_radiobutton(label="Normal", command=lambda: self.set_text_size("normal"))
+        text_size_menu.add_radiobutton(label="Large",font=("Arial, 20"), command=lambda: self.set_text_size("large"))
+
+
+        #accessibility menu button
+        access_button = tk.Button(root, text="Accessibility",font=("Arial, 20"), command=self.show_accessibility_menu)
+        access_button.grid(row=1, column=0, padx=10, pady=10)
+
+    def show_accessibility_menu(self):
+        x, y, _, _ = self.root.bbox("current")
+        self.root.geometry("+%d+%d" % (x, y))
+        self.access_menu.post(x, y)
+
+    def set_text_size(self, size):
+        font = ("Arial", 12)
+        button_width = 10 
+        if size == "large":
+            font = ("Arial", 24)
+            button_width = 20 
+        self.self_title.config(font=font)
+        self.suggest_label.config(font=font)
+        self.list_label.config(font=font)
+        self.request_label.config(font=font)
+        self.sOne.config(width=button_width,font=font)
+        self.sTwo.config(width=button_width,font=font)
+        self.sThree.config(width=button_width,font=font)
+        self.optionGo.config(width=button_width,font=font)
+        self.request.config(width=button_width,font=font)
+        self.close_button.config(width=button_width,font=font)
+        self.request_button.config(width=button_width,font=font)
+        self.listAll.config(font=font)
+
+
 
     #request a subreddit page
     def request_page(self):
@@ -78,8 +118,8 @@ class MyApp:
             close_button = tk.Button(thankyou_window, text="Close", command=thankyou_close)
             close_button.pack(pady=10)
         
-        request_button = tk.Button(request_window, text="Submit", command=submit_request)
-        request_button.pack(pady=10)
+        self.request_button = tk.Button(request_window, text="Submit", command=submit_request)
+        self.request_button.pack(pady=10)
 
 
     #handles the button interactions 
@@ -96,11 +136,6 @@ class MyApp:
         webbrowser.open_new('https://www.reddit.com/r/Awwducational/')
 
 if __name__ == "__main__":
-    # Create the main application window
     root = tk.Tk()
-
-    # Create an instance of the application
     app = MyApp(root)
-
-    # Start the Tkinter event loop
     root.mainloop()
