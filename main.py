@@ -58,8 +58,7 @@ class MyApp:
         self.request.grid(row=5,column=1,padx=20,pady=20)
 
         #Accessibility Menu
-        self.access_menu = tk.Menu(root)
-        root.config(menu=self.access_menu)
+        self.access_menu = tk.Menu(root, tearoff=0)
 
         #sub menu for text size
         text_size_menu = tk.Menu(self.access_menu, tearoff=0)
