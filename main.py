@@ -103,7 +103,22 @@ class MyApp:
         request_window = tk.Toplevel(self.root)
         request_window.title("Request Page")
 
-        request_label = tk.Label(request_window, font = cFont, text="Enter the subreddit name below")
+        request_label = tk.Label(request_window, font = cFont, text="Here you can request a subreddit! Be sure to follow some basic rules:")
+        request_label.pack(pady=10)
+
+        request_label = tk.Label(request_window, font = cFont, text="1. Your requested subreddit must be Safe For Work")
+        request_label.pack(pady=10)
+
+        request_label = tk.Label(request_window, font = cFont, text="2. Your requested subreddit's content must be appropriate for younger audiences")
+        request_label.pack(pady=10)
+
+        request_label = tk.Label(request_window, font = cFont, text="3. The subreddit's rules must also be appropriate to be considered a safe space")
+        request_label.pack(pady=10)
+
+        request_label = tk.Label(request_window, font = cFont, text="After manual review we will decide whether or not this is an appropriate subreddit to add to Reddit Safe Mode")
+        request_label.pack(pady=10)
+
+        request_label = tk.Label(request_window, font = cFont, text="Enter the subreddit name below:")
         request_label.pack(pady=10)
 
         request_text = tk.Entry(request_window, font = cFont)
