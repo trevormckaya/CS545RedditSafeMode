@@ -11,6 +11,7 @@ Future prototypes (3 to N)
 - Continue to focus on our E
 '''
 
+#Global font that can be changed from the Accessibility Menu, make sure to use a font that is dyslexia friendly if you change it!
 cFont = ("Arial", 12)
 
 class MyApp:
@@ -78,8 +79,10 @@ class MyApp:
 
     def set_text_size(self, size):
         global cFont
+        #This should be the same value as the global font at the top of the file
         cFont = ("Arial", 12)
         if size == "large":
+            #This is the font and size of the text when changed to Large in accessibility. The font should match what the default font is but size should be bigger (I recommend leaving size alone, in any case, the text size is good as it is, unless it conflicts with design choices)
             cFont = ("Arial", 24) 
         self.self_title.config(font=cFont)
         self.suggest_label.config(font=cFont)
