@@ -30,7 +30,7 @@ class MyApp:
         self.self_title.grid(row=1,column=1,pady=20,padx=20)
 
         self.image1 = Image.open("./RedditLogo.jpg")
-        self.image1 = self.image1.resize((lSize, lSize), Image.ANTIALIAS)
+        self.image1 = self.image1.resize((lSize, lSize))
         self.test = ImageTk.PhotoImage(self.image1)
         self.label1 = tk.Label(image=self.test)
         self.label1.image = self.test
@@ -113,7 +113,7 @@ class MyApp:
         self.self_title.config(font=hFont)
 
         self.label1.destroy()
-        self.image1 = self.image1.resize((lSize, lSize), Image.ANTIALIAS)
+        self.image1 = self.image1.resize((lSize, lSize))
         self.test = ImageTk.PhotoImage(self.image1)
         self.label1 = tk.Label(image=self.test)
         self.label1.image = self.test
