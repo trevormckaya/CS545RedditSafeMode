@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import ImageTk, Image
 import webbrowser
 '''
 Future prototypes (3 to N)
@@ -13,6 +14,11 @@ Future prototypes (3 to N)
 
 #Global font that can be changed from the Accessibility Menu, make sure to use a font that is dyslexia friendly if you change it! (Helvetica, Courier, Arial, Verdana, etc, to find more look on Google)
 cFont = ("Arial", 12)
+hFont = ("Arial", 24)
+lSize = 30
+lx = 270
+ly = 25
+
 
 class MyApp:
     def __init__(self, root):
@@ -20,11 +26,19 @@ class MyApp:
         self.root.title("Reddit Safe Mode")
 
         #selfpage Title
-        self.self_title = tk.Label(root, font = cFont, text="Reddit Safe Mode")
+        self.self_title = tk.Label(root, bg="white", fg = '#FF4500', font = hFont, text="Reddit Safe Mode")
         self.self_title.grid(row=1,column=1,pady=20,padx=20)
 
+        self.image1 = Image.open("./RedditLogo.jpg")
+        self.image1 = self.image1.resize((lSize, lSize), Image.ANTIALIAS)
+        self.test = ImageTk.PhotoImage(self.image1)
+        self.label1 = tk.Label(image=self.test)
+        self.label1.image = self.test
+        self.label1.place(x=lx, y=ly)
+
+
         # Suggested/popular safe subreddits for users to quickly access
-        self.suggest_label = tk.Label(root, font = cFont, text="Popular Subreddits:")
+        self.suggest_label = tk.Label(root, bg="white", font = cFont, text="Popular Subreddits:")
         self.suggest_label.grid(row=2,column=1,padx=20,pady=20)
 
         self.sOne = tk.Button(root, font = cFont, text="r/toys", command=self.testsOne)
@@ -37,7 +51,7 @@ class MyApp:
         self.sThree.grid(row=3,column=2,pady=20,padx=20)
 
         #list of all subreddits on our platform
-        self.list_label = tk.Label(root, font = cFont, text="List of all subreddits:")
+        self.list_label = tk.Label(root, bg="white", font = cFont, text="List of all subreddits:")
         self.list_label.grid(row=4,column=0,padx=20,pady=20)
         self.subreddits = ["r/toys", "r/cute", "r/Awwducational", "r/wholesome", "r/aww", "r/cats", "r/PuppySmiles", "r/CatsWithDogs", "r/lego", "r/Outdoors"]
         self.selected_subreddit = tk.StringVar()
@@ -52,7 +66,7 @@ class MyApp:
         self.optionGo.grid(row=4,column=2,padx=20,pady=20)
 
         #suggestion a new subreddit action
-        self.request_label = tk.Label(root, font = cFont, text="Dont see your favorite SubReddit?")
+        self.request_label = tk.Label(root, bg="white", font = cFont, text="Dont see your favorite SubReddit?")
         self.request_label.grid(row=5,column=0,padx=20,pady=20)
 
         self.request = tk.Button(root, font = cFont, text="Request Here", command=self.request_page)
@@ -79,12 +93,32 @@ class MyApp:
 
     def set_text_size(self, size):
         global cFont
+        global hFont
+        global lSize
+        global lx
+        global ly
         #This should be the same value as the global font at the top of the file
         cFont = ("Arial", 12)
+        hFont = ("Arial", 24)
+        lSize = 30
+        lx = 270
+        ly = 25
         if size == "large":
             #This is the font and size of the text when changed to Large in accessibility. The font should match what the default font is but size should be bigger (I recommend leaving size alone, in any case, the text size is good as it is, unless it conflicts with design choices)
-            cFont = ("Arial", 24) 
-        self.self_title.config(font=cFont)
+            cFont = ("Arial", 24)
+            hFont = ("Arial", 48)
+            lSize = 60
+            lx = 480
+            ly = 25
+        self.self_title.config(font=hFont)
+
+        self.label1.destroy()
+        self.image1 = self.image1.resize((lSize, lSize), Image.ANTIALIAS)
+        self.test = ImageTk.PhotoImage(self.image1)
+        self.label1 = tk.Label(image=self.test)
+        self.label1.image = self.test
+        self.label1.place(x=lx, y=ly)
+
         self.suggest_label.config(font=cFont)
         self.list_label.config(font=cFont)
         self.request_label.config(font=cFont)
@@ -101,27 +135,28 @@ class MyApp:
     #request a subreddit page
     def request_page(self):
         request_window = tk.Toplevel(self.root)
+        request_window.configure(bg="white")
         request_window.title("Request Page")
 
-        request_label = tk.Label(request_window, font = cFont, text="Here you can request a subreddit! Be sure to follow some basic rules:")
+        request_label = tk.Label(request_window, bg="white", font = cFont, text="Here you can request a subreddit! Be sure to follow some basic rules:")
         request_label.pack(pady=10)
 
-        request_label = tk.Label(request_window, font = cFont, text="1. Your requested subreddit must be Safe For Work")
+        request_label = tk.Label(request_window, bg="white", font = cFont, text="1. Your requested subreddit must be Safe For Work")
         request_label.pack(pady=10)
 
-        request_label = tk.Label(request_window, font = cFont, text="2. Your requested subreddit's content must be appropriate for younger audiences")
+        request_label = tk.Label(request_window, bg="white", font = cFont, text="2. Your requested subreddit's content must be appropriate for younger audiences")
         request_label.pack(pady=10)
 
-        request_label = tk.Label(request_window, font = cFont, text="3. The subreddit's rules must also be appropriate to be considered a safe space")
+        request_label = tk.Label(request_window, bg="white", font = cFont, text="3. The subreddit's rules must also be appropriate to be considered a safe space")
         request_label.pack(pady=10)
 
-        request_label = tk.Label(request_window, font = cFont, text="After manual review we will decide whether or not this is an appropriate subreddit to add to Reddit Safe Mode")
+        request_label = tk.Label(request_window, bg="white", font = cFont, text="After manual review we will decide whether or not this is an appropriate subreddit to add to Reddit Safe Mode")
         request_label.pack(pady=10)
 
-        request_label = tk.Label(request_window, font = cFont, text="Enter the subreddit name below:")
+        request_label = tk.Label(request_window, bg="white", font = cFont, text="Enter the subreddit name below:")
         request_label.pack(pady=10)
 
-        request_text = tk.Entry(request_window, font = cFont)
+        request_text = tk.Entry(request_window, bg="ghostwhite", font = cFont)
         request_text.pack(pady=10)
     
         def submit_request():
@@ -129,8 +164,9 @@ class MyApp:
             print("request submitted: " + text)
             request_window.destroy()
             thankyou_window = tk.Toplevel(self.root)
+            thankyou_window.configure(bg="white")
             thankyou_window.title("Thank You")
-            thankyou_label = tk.Label(thankyou_window, font = cFont, text="Your request has been submitted. Thank you!")
+            thankyou_label = tk.Label(thankyou_window, bg="white", font = cFont, text="Your request has been submitted. Thank you!")
             thankyou_label.pack(pady=10)
             def thankyou_close():
                 thankyou_window.destroy()
@@ -156,5 +192,6 @@ class MyApp:
 
 if __name__ == "__main__":
     root = tk.Tk()
+    root.configure(bg="white")
     app = MyApp(root)
     root.mainloop()
