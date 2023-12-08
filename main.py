@@ -39,7 +39,7 @@ class MyApp:
         #list of all subreddits on our platform
         self.list_label = tk.Label(root, font = cFont, text="List of all subreddits:")
         self.list_label.grid(row=4,column=0,padx=20,pady=20)
-        self.subreddits = ["r/toys", "r/cute", "r/Awwducational", "r/wholesome"]
+        self.subreddits = ["r/toys", "r/cute", "r/Awwducational", "r/wholesome", "r/aww", "r/cats", "r/PuppySmiles", "r/CatsWithDogs", "r/lego", "r/Outdoors"]
         self.selected_subreddit = tk.StringVar()
         self.selected_subreddit.set(self.subreddits[0])
         self.listAll = tk.OptionMenu(root, self.selected_subreddit, *self.subreddits)
