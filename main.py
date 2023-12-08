@@ -11,7 +11,7 @@ Future prototypes (3 to N)
 - Continue to focus on our E
 '''
 
-#Global font that can be changed from the Accessibility Menu, make sure to use a font that is dyslexia friendly if you change it!
+#Global font that can be changed from the Accessibility Menu, make sure to use a font that is dyslexia friendly if you change it! (Helvetica, Courier, Arial, Verdana, etc, to find more look on Google)
 cFont = ("Arial", 12)
 
 class MyApp:
